@@ -65,7 +65,7 @@ console.log(sampleObject);
 You can use `downloadFormattedTxtFile` to generate and download the SQL stored procedure as a text file:
 
 ```javascript
-JsonToSqlSP.downloadFormattedTxtFile("InsertCompanyData", sampleObject, "name: VARCHAR; city: VARCHAR", "company_data_proc");
+JsonToSqlSP.downloadFormattedTxtFile("procedure-name", sampleObject, "name-dependency(s): <type-value(s)>; ...; ... ", "your-folder-name");
 ```
 
 ## Features
