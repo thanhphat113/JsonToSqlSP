@@ -1,0 +1,18 @@
+{
+  "name": "jsontosqlsp",
+  "main": "dist/json-to-sql-sp.umd.js",
+  "module": "dist/json-to-sql-sp.esm.js",
+  "description": "A JavaScript library to convert JSON to SQL Stored Procedure format",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "author": "Ly Thanh Phat",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^5.4.1"
+  }
+}
