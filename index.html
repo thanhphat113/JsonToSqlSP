@@ -7,7 +7,7 @@
     </head>
     <body>
         <div id="app"></div>
-        <script src="https://cdn.jsdelivr.net/gh/thanhphat113/json-to-sql-sp@1.0.0/dist/json-to-sql-sp.umd.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/thanhphat113/JsonToSqlSP@1.0.1/dist/json-to-sql-sp.umd.js"></script>
         <script>
             const sampleObject = {
                 company: {
@@ -56,12 +56,12 @@
                 status: "0", // Trạng thái hệ thống tạm ngừng hoạt động
             };
 
-            JsonToSqlSP.downloadFormattedTxtFile(
-                    "Haha",
-                    sampleObject,
-                    "NGAYBD: DATE;    NGAYKT: DATE",
-                    "conmeo"
-                );
+            // JsonToSqlSP.downloadFormattedTxtFile(
+            //         "Haha",
+            //         sampleObject,
+            //         "NGAYBD: DATE;    NGAYKT: DATE",
+            //         "conmeo"
+            //     );
         </script>
     </body>
 </html>

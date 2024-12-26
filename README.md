@@ -24,7 +24,7 @@ import { downloadFormattedTxtFile } from 'jsontosqlsp';
 You can also include it via CDN. Add the following `<script>` tag to your HTML file:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/my-library@1.0.0/dist/json-to-sql-sp.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/thanhphat113/JsonToSqlSP/dist/json-to-sql-sp.umd.js"></script>
 ```
 
 ## Usage
