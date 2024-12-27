@@ -7,18 +7,6 @@ MyLibrary is a JavaScript library that helps you convert complex JSON objects in
 
 You can install jsontosqlsp via npm or use it directly via a CDN.
 
-### 1. Install via npm:
-
-```bash
-npm install jsontosqlsp
-```
-
-Then, you can import and use it in your JavaScript project:
-
-```javascript
-import { downloadFormattedTxtFile } from 'jsontosqlsp';
-```
-
 ### 2. Using via CDN:
 
 You can also include it via CDN. Add the following `<script>` tag to your HTML file:

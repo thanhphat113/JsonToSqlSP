@@ -7,454 +7,57 @@
     </head>
     <body>
         <div id="app">
-            <button id="action">Tai</button>
+            <h1>Read JSON File</h1>
+            <div>
+                <span>Tên store proceduce</span>
+                <input type="text" id="name" /><br />
+                <span>biến</span>
+                <input
+                    type="text"
+                    id="dependencies"
+                    placeholder="NgayBD: Date; NgayKT: Date"
+                /><br />
+                <span>Tên thư mục</span>
+                <input type="text" id="outputname" /><br />
+            </div>
+            <input type="file" id="fileInput" accept=".json" />
+            <button id="download"> tải về</button>
+            <pre id="output"></pre>
         </div>
-        <script src="https://cdn.jsdelivr.net/gh/thanhphat113/JsonToSqlSP@1.0.2/dist/json-to-sql-sp.umd.js"></script>
-        <script>
-            const sampleObject = {
-                header: {
-                    soYTe: "Đồng Nai",
-                    benhVien: "PHÒNG KHÁM ĐA KHOA",
-                    maSo: "BA-03",
-                },
-                thongTinChung: {
-                    hanhChinh: {
-                        hoVaTen: "Phan Thị Liên",
-                        ngaySinh: "01-01-1959",
-                        dienThoai: "",
-                        ngheNghiep: "00000",
-                        t_ngheNghiep: "Chưa rõ nghề nghiệp",
-                        danToc: "01",
-                        t_danToc: "Kinh",
-                        ngoaiKieu: "000",
-                        t_ngoaiKieu: "Việt Nam",
-                        diaChi: "Xã Phú An, Huyện Phú Tân, Tỉnh An Giang",
-                        phuongXa: "30436",
-                        t_phuongXa: "Xã Phú An",
-                        quanHuyen: "888",
-                        t_quanHuyen: "Huyện Phú Tân",
-                        tinhTp: "89",
-                        t_tinhTp: "An Giang",
-                        doiTuong: "DTBHYT",
-                        t_doiTuong: "BHYT",
-                        soTheBhyt: "DN4797422380845",
-                        cccd: "",
-                        hoTenNguoiNha: "aa",
-                        dienThoaiNguoiNha: "",
-                    },
-                    quanLyNguoiBenh: {
-                        vaoVien: "13:58 16-12-2024",
-                        tiepNhanTu: "1",
-                        noiChuyenDen: "",
-                        t_noiChuyenDen: "",
-                        vaoKhoa: {
-                            khoa: "",
-                            t_khoa: "",
-                            ngayGio: "",
-                            soNgay: "",
-                        },
-                        chuyenKhoa: [
-                            {
-                                khoa: "",
-                                t_khoa: "",
-                                ngayGio: "",
-                                soNgay: "",
-                            },
-                        ],
-                        tongSoNgayDieuTri: "10",
-                        noiChuyenDi: "",
-                        t_noiChuyenDi: "",
-                        raVien: {
-                            ngayGio: "",
-                            lyDo: "",
-                        },
-                    },
-                    chuanDoan: {
-                        chuanDoanVaoVien: "",
-                        t_chuanDoanVaoVien: "",
-                        benhChinh: "",
-                        t_benhChinh: "",
-                        benhKemTheo: [],
-                        t_benhKemTheo: [],
-                        bienChung: [],
-                        t_bienChung: [],
-                        thuThuatPhauThuat: "",
-                        giaiPhauBenh: "",
-                    },
-                    tinhTrangRaVien: "1",
-                    tinhHinhTuVong: {
-                        tuVongLuc: "14:00 16-12-2024",
-                        thoiDiemTuVong: "1",
-                        nguyenNhanChinh: "",
-                        t_nguyenNhanChinh: "",
-                    },
-                    ngay: "",
-                    lanhDaoKhoa: "",
-                    t_lanhDaoKhoa: "",
-                    daiDienCoSo: "",
-                    t_daiDienCoSo: "",
-                },
-                thongTinKhamBenh: {
-                    lyDoVaoVien: "",
-                    hoiBenh: {
-                        hoiBenhChung: {
-                            ngayDauKyKinhCuoi: "",
-                            ngayDuKienSinh: "",
-                            khamThaiBonLanTrongBaThoiKy: "",
-                            tiemPhongUonVan: {
-                                trangThai: "",
-                                noiDung: "",
-                            },
-                            dieuTriGiangMai: "",
-                            dieuTriViemGanB: "",
-                            dieuTriArv: "",
-                            dieuTriCorticoid: {
-                                trangThai: "",
-                                lieuCuoiLuc: "",
-                                ngay: "",
-                            },
-                            mangThaiNhoKyThuat: "",
-                        },
-                        tienSu: {
-                            tienSuBanThan: {
-                                diUng: {
-                                    trangThai: "",
-                                    noiDung: "",
-                                },
-                                tienSuBenh: {
-                                    benhHuyetAp: "",
-                                    benhTim: "",
-                                    benhHoHap: "",
-                                    benhTuyenGiap: "",
-                                    benhThan: "",
-                                    benhDaiThaoDuong: "",
-                                    khac: "",
-                                },
-                                thuocDangDung: {
-                                    trangThai: "",
-                                    noiDung: "",
-                                },
-                                tienSuPhauThuat: {
-                                    trangThai: "",
-                                    noiDung: "",
-                                },
-                                tienSuSanKhoa: {
-                                    para: "",
-                                    noiDung: [
-                                        {
-                                            thoiGian: "",
-                                            tuoiThai: "",
-                                            dienBien: "",
-                                            cachThucSinh: "",
-                                            treSoSinh: "",
-                                            hauSan: "",
-                                        },
-                                    ],
-                                    tienSuSanKhoaKhac: "",
-                                },
-                                phuKhoa: {
-                                    chuKyKinh: {
-                                        trangThai: "",
-                                        noiDung: "",
-                                    },
-                                    phauThuatPhuKhoa: {
-                                        trangThai: "",
-                                        noiDung: "",
-                                    },
-                                    khoiUBuongTrung: "",
-                                    khoiUTuCung: "",
-                                    diDangSinhDuc: "",
-                                    tangSinhMon: "",
-                                    saTangChau: "",
-                                    benhPhuKhoa: "",
-                                },
-                            },
-                            tienSuGiaDinh: {
-                                daThai: "",
-                                diDang: "",
-                                benhDiTruyen: "",
-                                daiThaoDuong: "",
-                                tangHuyetAp: "",
-                                khac: "",
-                            },
-                        },
-                    },
-                    thongTinTaiKhoaKhamBenh: {
-                        toanThan: {
-                            tinhThan: "1",
-                            phu: "1",
-                            proteinNieu: {
-                                trangThai: "",
-                                noiDung: "",
-                            },
-                            seoMoCu: "",
-                            khungChau: "",
-                            chieuCaoTuCung: "",
-                            vongBung: "",
-                            ngoiThai: {
-                                trangThai: "",
-                                noiDung: "",
-                            },
-                            conCoTuCung: {
-                                trangThai: "",
-                                noiDung: "",
-                            },
-                            timThai: {
-                                trangThai: "",
-                                noiDung: "",
-                            },
-                            coTuCung: {
-                                trangThai: "",
-                                noiDung: "",
-                            },
-                            dauOi: {
-                                trangThai: "",
-                                noiDung: "",
-                            },
-                            nuocOi: "",
-                            sinhHieus: [
-                                {
-                                    tenTriSo: "Mạch",
-                                    kq: "",
-                                    donVi: "lần/ph",
-                                },
-                                {
-                                    tenTriSo: "Nhiệt độ",
-                                    kq: "37",
-                                    donVi: "℃",
-                                },
-                                {
-                                    tenTriSo: "Huyết áp",
-                                    kq: "",
-                                    donVi: "mmHg",
-                                },
-                                {
-                                    tenTriSo: " Nhịp thở",
-                                    kq: "20",
-                                    donVi: "lần/ph",
-                                },
-                                {
-                                    tenTriSo: "Cân nặng",
-                                    kq: "60",
-                                    donVi: ".kg",
-                                },
-                                {
-                                    tenTriSo: "Chiều cao",
-                                    kq: "",
-                                    donVi: "cm",
-                                },
-                                {
-                                    tenTriSo: "BMI",
-                                    kq: "",
-                                    donVi: "",
-                                },
-                            ],
-                        },
-                        cacXnClsCanLam: {
-                            trangThai: "1",
-                            noiDung: {
-                                xnMauNgoaiVi: "",
-                                xnDongMau: "",
-                                sinhHoaMau: "",
-                                xnCacBenhLayTruyen: "",
-                                sanLocTruocSinh: "",
-                                xnNuocTieu: "",
-                                sieuAm: "",
-                                khac: "",
-                            },
-                        },
-                        chuanDoan: "",
-                        t_chuanDoan: "",
-                        tienLuong: {
-                            trangThai: "",
-                            noiDung: "",
-                        },
-                        keHoachDieuTri: {
-                            huongDieuTriTiepTheo: "",
-                            tuVan: {
-                                trangThai: "",
-                                noiDung: "",
-                            },
-                        },
-                        nguoiKham: "",
-                        ngay: "",
-                        bacSiKhamBenh: "",
-                        t_bacSiKhamBenh: "",
-                    },
-                    thongTinTaiKhoaDe: {
-                        thongTinChung: {
-                            thoiGianVaoKhoaDe: "",
-                            tuanTuoiThai: "",
-                            duKienDatTenCon: {
-                                hoVaTenChong: "",
-                                conTrai: "",
-                                conGai: "",
-                            },
-                        },
-                        khamSanKhoa: {
-                            khamNgoai: {
-                                hinhDangTuCung: "",
-                                tuThe: "",
-                                conCoTuCung: "",
-                                nhipTimThai: "",
-                                ngoiThai: "",
-                                khungChauNgoai: "",
-                            },
-                            khamTrong: {
-                                tangSinhMon: "",
-                                coTuCung: {
-                                    trangThai: "",
-                                    mo: {
-                                        trangThai: "",
-                                        noiDung: "",
-                                        bishop: "",
-                                    },
-                                },
-                                khoiU: {
-                                    trangThai: "",
-                                    noiDung: "",
-                                },
-                                dauOi: {
-                                    trangThai: "",
-                                    noiDung: "",
-                                },
-                                mauSacNuocOi: "",
-                                ngoi: "",
-                                the: "",
-                                kieuThe: "",
-                                doLotDelle: "",
-                                duongKinh: "",
-                            },
-                        },
-                        cacXnClsCanLam: {
-                            trangThai: "1",
-                            noiDung: "",
-                        },
-                        tomTatBenhAn: "",
-                        chuanDoan: {
-                            chuanDoanKhiVaoKhoaDe: "",
-                            t_chuanDoanKhiVaoKhoaDe: "",
-                            chuanDoanPhanBiet: "",
-                            t_chuanDoanPhanBiet: "",
-                        },
-                        tienLuong: {
-                            trangThai: "1",
-                            khac: "",
-                        },
-                        keHoachDieuTri: {
-                            huongDieuTriTiepTheo: "",
-                            tuVan: {
-                                trangThai: "",
-                                noiDung: "",
-                            },
-                        },
-                    },
-                    ngay: "",
-                    bacSiKhamBenh: "",
-                    t_bacSiKhamBenh: "",
-                },
-                tongKetBenhAn: {
-                    tinhTrangTreSoSinh: {
-                        soConSinhLanNay: "",
-                        soConSinhSong: "",
-                        tuVongThaiNhi: {
-                            trangThai: "",
-                            noiDung: "",
-                        },
-                    },
-                    ketQuaXnCls: {
-                        khiMangThai: {
-                            mauNgoaiVi: "1",
-                            hiv: "1",
-                            viemGanB: "1",
-                            giangMai: "1",
-                            duongHuyet: "1",
-                            proteinNieu: "1",
-                            sangLocTruocSinh: "1",
-                        },
-                        khiChuyenDa: {
-                            mauNgoaiVi: "1",
-                            hiv: "1",
-                            viemGanB: "1",
-                            giangMai: "1",
-                            duongHuyet: "1",
-                            proteinNieu: "1",
-                            sangLocTruocSinh: "1",
-                        },
-                        khac: "1",
-                    },
-                    dacDiemGiaiDoanSoRau: {
-                        rauSoLuc: "14:30",
-                        canNang: "100",
-                        kieuSo: "1",
-                        thoiGianSoRau: "15",
-                        dayRauCuonCo: {
-                            trangThai: "",
-                            noiDung: "",
-                        },
-                        kiemSoatTuCung: {
-                            trangThai: "",
-                            noiDung: "",
-                        },
-                        bocRauNhanTao: {
-                            trangThai: "",
-                            noiDung: "",
-                        },
-                        chayMau: {
-                            trangThai: "",
-                            noiDung: "",
-                        },
-                    },
-                    tinhHinhSanPhuSauSinh: {
-                        toanTrang: "",
-                        mach: "",
-                        nhietDo: "",
-                        huyetAp: "",
-                        nhipTho: "",
-                        thoiGianChuyenDa: "",
-                        thoiGianTheoDoi: "",
-                        sinhLuc: "",
-                        cachThucSinh: "",
-                        tangSinhMon: "",
-                        amDao: "",
-                        coTuCung: "",
-                        taiBienSanKhoa: {
-                            trangThai: "",
-                            noiDung: "",
-                        },
-                        nguoiDoDe: "",
-                    },
-                    tinhHinhPhauThuat: {
-                        chuanDoanTruocPhauThuat: "",
-                        t_chuanDoanTruocPhauThuat: "",
-                        chuanDoanSauPhauThuat: "",
-                        t_chuanDoanSauPhauThuat: "",
-                        noiDung: [
-                            {
-                                thoiGian: "",
-                                phuongPhap: "",
-                                phauThuatVien: "",
-                                t_phauThuatVien: "",
-                                bacSiGayMe: "",
-                                t_bacSiGayMe: "",
-                            },
-                        ],
-                    },
-                    huongDieuTriTiepTheo: "",
-                    ngay: "",
-                    bacSiDieuTri: "",
-                    t_bacSiDieuTri: "",
-                },
-            };
-            
-            document.getElementById("action").addEventListener("click", () => {
-                JsonToSqlSP.downloadFormattedTxtFile(
-                    "Haha",
-                    sampleObject,
-                    "NGAYBD: DATE;    NGAYKT: DATE",
-                    "conmeo"
-                );
-            })
+        <!-- <script src="https://cdn.jsdelivr.net/gh/thanhphat113/JsonToSqlSP@1.0.3/dist/json-to-sql-sp.umd.js"></script> -->
+        <script type="module">
+            document
+                .getElementById("download")
+                .addEventListener("click", async (event) => {
+                    const fileInput = document.getElementById("fileInput");
+                    const dependencies = 
+                        document.getElementById("dependencies").value;
+                    const name = document.getElementById("name").value;
+                    const outputname =
+                        document.getElementById("outputname").value;
+
+                    if (!name || !dependencies || !outputname) {
+                        alert("Vui lòng không bỏ trống biến, tên và tên file");
+                        return;
+                    }
+                    const file = fileInput.files[0];
+                    const result = await readJsonFileToObject(file);
+                    downloadFormattedTxtFile(
+                        name,
+                        result,
+                        dependencies,
+                        outputname
+                    );
+
+                    file.value = ""
+                    dependencies.value = ""
+                    name.value = ""
+                    outputname.value = ""
+                });
+            import {
+                readJsonFileToObject,
+                downloadFormattedTxtFile,
+            } from "./src/index.js";
         </script>
     </body>
 </html>
