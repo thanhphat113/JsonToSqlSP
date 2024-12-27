@@ -26,6 +26,11 @@
         </div>
         <!-- <script src="https://cdn.jsdelivr.net/gh/thanhphat113/JsonToSqlSP@1.0.3/dist/json-to-sql-sp.umd.js"></script> -->
         <script type="module">
+            import {
+                readJsonFileToObject,
+                downloadFormattedTxtFile,
+            } from "./src/index.js";
+
             document
                 .getElementById("download")
                 .addEventListener("click", async (event) => {
@@ -36,8 +41,8 @@
                     const outputname =
                         document.getElementById("outputname").value;
 
-                    if (!name || !dependencies || !outputname) {
-                        alert("Vui lòng không bỏ trống biến, tên và tên file");
+                    if (!name || !outputname) {
+                        alert("Vui lòng không bỏ trống tên và tên file");
                         return;
                     }
                     const file = fileInput.files[0];
@@ -49,15 +54,12 @@
                         outputname
                     );
 
-                    file.value = ""
-                    dependencies.value = ""
-                    name.value = ""
-                    outputname.value = ""
+                    document.getElementById("fileInput").value = ""
+                    document.getElementById("dependencies").value = ""
+                    document.getElementById("name").value = ""
+                    document.getElementById("outputname").value = ""
                 });
-            import {
-                readJsonFileToObject,
-                downloadFormattedTxtFile,
-            } from "./src/index.js";
+            
         </script>
     </body>
 </html>
