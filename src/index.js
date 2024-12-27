@@ -31,15 +31,7 @@ export const downloadFormattedTxtFile = (
     const jsonKeys = Object.keys(json);
     let formattedData = `CREATE PROCEDURE [dbo].[${name}]\n`;
 
-    if (objectDependencies) {
-        const keys = Object.keys(objectDependencies);
-        keys.forEach((key, index) => {
-            formattedData +=
-                index === keys.length - 1
-                    ? `\t@${key} ${objectDependencies[key]}\n`
-                    : `\t@${key} ${objectDependencies[key]},\n`;
-        });
-    }
+    formattedData += `\t${objectDependencies}\n`
 
     formattedData += `AS\nBEGIN\n\tSELECT\n`;
     jsonKeys.forEach((value,index) => {
@@ -62,13 +54,7 @@ const hasDiacritics = (str) => {
 };
 
 const convertDependencies = (str) => {
-    const dependencies = str.split(";").map((item) => item.trim());
-    const result = dependencies.reduce((obj, item) => {
-        const [key, value] = item.split(":");
-        obj[key] = value;
-        return obj;
-    }, {});
-    return result;
+    return str.replace(/,/g, ",\n\t");
 };
 
 const downloadTxtFile = (data, filename) => {
