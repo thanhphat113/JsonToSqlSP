@@ -1,40 +1,40 @@
-const a = (e, o = "", s = {}) => {
-  for (let t in e) {
-    const n = o ? `${o}_${t}` : t;
-    if (Array.isArray(e[t])) {
-      const c = f(e[t]);
-      c && (s[n] = c);
-    } else typeof e[t] == "object" && e[t] !== null ? a(e[t], n, s) : s[n] = e[t] === "1" ? !0 : e[t] === "0" ? !1 : e[t];
+const i = (n, o = "", s = {}) => {
+  for (let e in n) {
+    const t = o ? `${o}_${e}` : e;
+    if (Array.isArray(n[e])) {
+      const c = f(n[e]);
+      c && (s[t] = c);
+    } else typeof n[e] == "object" && n[e] !== null ? i(n[e], t, s) : s[t] = n[e] === "1" ? !0 : n[e] === "0" ? !1 : n[e];
   }
   return s;
-}, f = (e) => e.every((o) => typeof o == "string") ? e.join("_") : null, b = (e, o, s = "", t) => {
-  const n = y(s), c = a(o), i = Object.keys(c);
-  let r = `CREATE PROCEDURE [dbo].[${e}]
+}, f = (n) => n.every((o) => typeof o == "string") ? n.join("_") : null, j = (n, o, s = "", e) => {
+  const t = y(s), c = i(o), d = Object.keys(c);
+  let l = `CREATE PROCEDURE [dbo].[${n}]
 `;
-  if (n) {
-    const l = Object.keys(n);
-    l.forEach((d, u) => {
-      r += u === l.length - 1 ? `	@${d} ${n[d]}
-` : `	@${d} ${n[d]},
+  if (t) {
+    const r = Object.keys(t);
+    r.forEach((a, u) => {
+      l += u === r.length - 1 ? `	@${a} ${t[a]}
+` : `	@${a} ${t[a]},
 `;
     });
   }
-  return r += `AS
+  return l += `AS
 BEGIN
-`, i.forEach((l) => {
-    r += `	${p(c[l]) ? "N" : ""}'${c[l]}' ${l}
+`, d.forEach((r) => {
+    l += `	${p(c[r]) ? "N" : ""}${typeof c[r] == "boolean" ? c[r] : "json[value]"} ${r}
 `;
-  }), r += `END
-`, $(r, t), r;
-}, p = (e) => /[àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹ]/.test(
-  e
-), y = (e) => e.split(";").map((t) => t.trim()).reduce((t, n) => {
-  const [c, i] = n.split(":");
-  return t[c] = i, t;
-}, {}), $ = (e, o) => {
-  const s = new Blob([e], { type: "text/plain" }), t = document.createElement("a");
-  t.href = URL.createObjectURL(s), t.download = o, t.click();
+  }), l += `END
+`, b(l, e), l;
+}, p = (n) => /[àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹ]/.test(
+  n
+), y = (n) => n.split(";").map((e) => e.trim()).reduce((e, t) => {
+  const [c, d] = t.split(":");
+  return e[c] = d, e;
+}, {}), b = (n, o) => {
+  const s = new Blob([n], { type: "text/plain" }), e = document.createElement("a");
+  e.href = URL.createObjectURL(s), e.download = o, e.click();
 };
 export {
-  b as downloadFormattedTxtFile
+  j as downloadFormattedTxtFile
 };

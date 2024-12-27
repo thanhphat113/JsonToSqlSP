@@ -3,7 +3,7 @@
   "main": "dist/json-to-sql-sp.umd.js",
   "module": "dist/json-to-sql-sp.esm.js",
   "description": "A JavaScript library to convert JSON to SQL Stored Procedure format",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "scripts": {
     "dev": "vite",
