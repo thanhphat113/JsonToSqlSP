@@ -48,7 +48,7 @@ export const downloadFormattedTxtFile = (
     formattedData += `AS\nBEGIN\n`;
     jsonKeys.forEach((value) => {
         formattedData += `\t${hasDiacritics(json[value]) ? `N` : ""}${
-            (typeof(json[value]) === 'boolean' ? json[value] : 'json[value]')
+            (typeof(json[value]) === 'boolean' ? json[value] : `'${json[value]}'`)
         } ${value}\n`;
     });
 
